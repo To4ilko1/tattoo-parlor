@@ -1,0 +1,1098 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ClientModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=&quot;C:\Users\Лиза\Documents\Visual Studio 2015\Projects\НОВАЯ ВЕРСИЯ\Interface_TS\Client.db&quot;" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Branch">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="DeleteTime" Type="datetime" />
+          <Property Name="CountCabinets" Type="integer" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BranchMaterials">
+          <Key>
+            <PropertyRef Name="BranchID" />
+            <PropertyRef Name="MaterialID" />
+            <PropertyRef Name="Date" />
+          </Key>
+          <Property Name="BranchID" Type="integer" Nullable="false" />
+          <Property Name="MaterialID" Type="integer" Nullable="false" />
+          <Property Name="CountPerPiece" Type="real" />
+          <Property Name="DeleteTime" Type="datetime" />
+          <Property Name="CountForTheAmount" Type="real" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="AddOrDelete" Type="bit" />
+          <Property Name="ServiceID" Type="integer" />
+        </EntityType>
+        <EntityType Name="Cabinet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" Nullable="false" />
+          <Property Name="BranchID" Type="integer" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="250" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DeleteTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CabinetServices">
+          <Key>
+            <PropertyRef Name="CabinetID" />
+            <PropertyRef Name="ServiceID" />
+          </Key>
+          <Property Name="CabinetID" Type="integer" Nullable="false" />
+          <Property Name="ServiceID" Type="integer" Nullable="false" />
+          <Property Name="DeleteTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContactPhoneNumber" Type="nvarchar" MaxLength="11" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SecondName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="250" />
+          <Property Name="DeleteTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Material">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CostPerPiece" Type="integer" />
+          <Property Name="NameOfSupplier" Type="nvarchar" MaxLength="50" />
+          <Property Name="TheCostForTheAmount" Type="real" />
+          <Property Name="DeleteTime" Type="datetime" />
+          <Property Name="Description" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Pay">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientID" Type="integer" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Price" Type="real" />
+          <Property Name="SessionID" Type="integer" />
+          <Property Name="WorkerID" Type="integer" />
+          <Property Name="DeleteTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Price" Type="real" Nullable="false" />
+          <Property Name="Time" Type="real" Nullable="false" />
+          <Property Name="DeleteTime" Type="datetime" />
+          <Property Name="CountWorker" Type="integer" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="ServiceMaterials">
+          <Key>
+            <PropertyRef Name="ServiceID" />
+            <PropertyRef Name="MaterialID" />
+          </Key>
+          <Property Name="ServiceID" Type="integer" Nullable="false" />
+          <Property Name="MaterialID" Type="integer" Nullable="false" />
+          <Property Name="CountPerPiece" Type="real" />
+          <Property Name="DeleteTime" Type="datetime" />
+          <Property Name="CountForTheAmount" Type="real" />
+        </EntityType>
+        <EntityType Name="ServiceWorkers">
+          <Key>
+            <PropertyRef Name="ServiceID" />
+            <PropertyRef Name="WorkerID" />
+          </Key>
+          <Property Name="ServiceID" Type="integer" Nullable="false" />
+          <Property Name="WorkerID" Type="integer" Nullable="false" />
+          <Property Name="DeleteTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Session">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" Nullable="false" />
+          <Property Name="ClientID" Type="integer" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="TimeStart" Type="datetime" />
+          <Property Name="TimeEnd" Type="datetime" />
+          <Property Name="Price" Type="real" />
+          <Property Name="BranchID" Type="integer" />
+          <Property Name="DeleteTime" Type="datetime" />
+          <Property Name="CountWorker" Type="integer" />
+          <Property Name="ReduceMaterial" Type="bit" />
+        </EntityType>
+        <EntityType Name="SessionServices">
+          <Key>
+            <PropertyRef Name="SessionID" />
+            <PropertyRef Name="ServiceID" />
+          </Key>
+          <Property Name="SessionID" Type="integer" Nullable="false" />
+          <Property Name="ServiceID" Type="integer" Nullable="false" />
+          <Property Name="DeleteTime" Type="datetime" />
+          <Property Name="PayState" Type="bit" />
+          <Property Name="WorkerID" Type="integer" Nullable="false" />
+          <Property Name="TimeStart" Type="datetime" />
+          <Property Name="TimeEnd" Type="datetime" />
+          <Property Name="Description" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="CabinetID" Type="integer" />
+        </EntityType>
+        <EntityType Name="SessionWorkers">
+          <Key>
+            <PropertyRef Name="SessionID" />
+            <PropertyRef Name="WorkerID" />
+          </Key>
+          <Property Name="SessionID" Type="integer" Nullable="false" />
+          <Property Name="WorkerID" Type="integer" Nullable="false" />
+          <Property Name="DeleteTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Worker">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContactPhoneNumber" Type="nvarchar" MaxLength="11" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="SecondName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Experience" Type="integer" />
+          <Property Name="Position" Type="nvarchar" MaxLength="50" />
+          <Property Name="TattooStyle" Type="nvarchar" MaxLength="50" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="250" />
+          <Property Name="DeleteTime" Type="datetime" />
+          <Property Name="BranchID" Type="integer" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="WorkerWorkingHours">
+          <Key>
+            <PropertyRef Name="WorkerID" />
+            <PropertyRef Name="WorkingHourID" />
+          </Key>
+          <Property Name="WorkerID" Type="integer" Nullable="false" />
+          <Property Name="WorkingHourID" Type="integer" Nullable="false" />
+          <Property Name="DeleteTime" Type="integer" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WorkingHour">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" Nullable="false" />
+          <Property Name="BranchID" Type="integer" />
+          <Property Name="WorkerID" Type="integer" />
+          <Property Name="TimeStart" Type="datetime" />
+          <Property Name="TimeEnd" Type="datetime" />
+          <Property Name="DeleteTime" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_Cabinet_0_0">
+          <End Role="Branch" Type="Self.Branch" Multiplicity="1" />
+          <End Role="Cabinet" Type="Self.Cabinet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cabinet">
+              <PropertyRef Name="BranchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pay_0_0">
+          <End Role="Worker" Type="Self.Worker" Multiplicity="0..1" />
+          <End Role="Pay" Type="Self.Pay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Worker">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pay">
+              <PropertyRef Name="WorkerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pay_1_0">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="Pay" Type="Self.Pay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pay">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pay_2_0">
+          <End Role="Session" Type="Self.Session" Multiplicity="0..1" />
+          <End Role="Pay" Type="Self.Pay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Session">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pay">
+              <PropertyRef Name="SessionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Session_0_0">
+          <End Role="Branch" Type="Self.Branch" Multiplicity="0..1" />
+          <End Role="Session" Type="Self.Session" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Session">
+              <PropertyRef Name="BranchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Session_1_0">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="Session" Type="Self.Session" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Session">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SessionServices_0_0">
+          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="SessionServices" Type="Self.SessionServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SessionServices">
+              <PropertyRef Name="ServiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SessionServices_1_0">
+          <End Role="Cabinet" Type="Self.Cabinet" Multiplicity="0..1" />
+          <End Role="SessionServices" Type="Self.SessionServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cabinet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SessionServices">
+              <PropertyRef Name="CabinetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SessionServices_2_0">
+          <End Role="Session" Type="Self.Session" Multiplicity="1" />
+          <End Role="SessionServices" Type="Self.SessionServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Session">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SessionServices">
+              <PropertyRef Name="SessionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SessionServices_3_0">
+          <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
+          <End Role="SessionServices" Type="Self.SessionServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Worker">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SessionServices">
+              <PropertyRef Name="WorkerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Worker_0_0">
+          <End Role="Branch" Type="Self.Branch" Multiplicity="0..1" />
+          <End Role="Worker" Type="Self.Worker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Worker">
+              <PropertyRef Name="BranchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkingHour_0_0">
+          <End Role="Branch" Type="Self.Branch" Multiplicity="0..1" />
+          <End Role="WorkingHour" Type="Self.WorkingHour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkingHour">
+              <PropertyRef Name="BranchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkingHour_1_0">
+          <End Role="Worker" Type="Self.Worker" Multiplicity="0..1" />
+          <End Role="WorkingHour" Type="Self.WorkingHour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Worker">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkingHour">
+              <PropertyRef Name="WorkerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ClientModelStoreContainer">
+          <EntitySet Name="Branch" EntityType="Self.Branch" store:Type="Tables" />
+          <EntitySet Name="BranchMaterials" EntityType="Self.BranchMaterials" store:Type="Tables" />
+          <EntitySet Name="Cabinet" EntityType="Self.Cabinet" store:Type="Tables" />
+          <EntitySet Name="CabinetServices" EntityType="Self.CabinetServices" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" store:Type="Tables" />
+          <EntitySet Name="Material" EntityType="Self.Material" store:Type="Tables" />
+          <EntitySet Name="Pay" EntityType="Self.Pay" store:Type="Tables" />
+          <EntitySet Name="Service" EntityType="Self.Service" store:Type="Tables" />
+          <EntitySet Name="ServiceMaterials" EntityType="Self.ServiceMaterials" store:Type="Tables" />
+          <EntitySet Name="ServiceWorkers" EntityType="Self.ServiceWorkers" store:Type="Tables" />
+          <EntitySet Name="Session" EntityType="Self.Session" store:Type="Tables" />
+          <EntitySet Name="SessionServices" EntityType="Self.SessionServices" store:Type="Tables" />
+          <EntitySet Name="SessionWorkers" EntityType="Self.SessionWorkers" store:Type="Tables" />
+          <EntitySet Name="Worker" EntityType="Self.Worker" store:Type="Tables" />
+          <EntitySet Name="WorkerWorkingHours" EntityType="Self.WorkerWorkingHours" store:Type="Tables" />
+          <EntitySet Name="WorkingHour" EntityType="Self.WorkingHour" store:Type="Tables" />
+          <AssociationSet Name="FK_Cabinet_0_0" Association="Self.FK_Cabinet_0_0">
+            <End Role="Branch" EntitySet="Branch" />
+            <End Role="Cabinet" EntitySet="Cabinet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pay_0_0" Association="Self.FK_Pay_0_0">
+            <End Role="Worker" EntitySet="Worker" />
+            <End Role="Pay" EntitySet="Pay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pay_1_0" Association="Self.FK_Pay_1_0">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Pay" EntitySet="Pay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pay_2_0" Association="Self.FK_Pay_2_0">
+            <End Role="Session" EntitySet="Session" />
+            <End Role="Pay" EntitySet="Pay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Session_0_0" Association="Self.FK_Session_0_0">
+            <End Role="Branch" EntitySet="Branch" />
+            <End Role="Session" EntitySet="Session" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Session_1_0" Association="Self.FK_Session_1_0">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Session" EntitySet="Session" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SessionServices_0_0" Association="Self.FK_SessionServices_0_0">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="SessionServices" EntitySet="SessionServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SessionServices_1_0" Association="Self.FK_SessionServices_1_0">
+            <End Role="Cabinet" EntitySet="Cabinet" />
+            <End Role="SessionServices" EntitySet="SessionServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SessionServices_2_0" Association="Self.FK_SessionServices_2_0">
+            <End Role="Session" EntitySet="Session" />
+            <End Role="SessionServices" EntitySet="SessionServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SessionServices_3_0" Association="Self.FK_SessionServices_3_0">
+            <End Role="Worker" EntitySet="Worker" />
+            <End Role="SessionServices" EntitySet="SessionServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Worker_0_0" Association="Self.FK_Worker_0_0">
+            <End Role="Branch" EntitySet="Branch" />
+            <End Role="Worker" EntitySet="Worker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkingHour_0_0" Association="Self.FK_WorkingHour_0_0">
+            <End Role="Branch" EntitySet="Branch" />
+            <End Role="WorkingHour" EntitySet="WorkingHour" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkingHour_1_0" Association="Self.FK_WorkingHour_1_0">
+            <End Role="Worker" EntitySet="Worker" />
+            <End Role="WorkingHour" EntitySet="WorkingHour" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ClientModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Branch">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DeleteTime" Type="DateTime" />
+          <Property Name="CountCabinets" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Cabinet" Relationship="Self.FK_Cabinet_0_0" FromRole="Branch" ToRole="Cabinet" />
+          <NavigationProperty Name="Session" Relationship="Self.FK_Session_0_0" FromRole="Branch" ToRole="Session" />
+          <NavigationProperty Name="Worker" Relationship="Self.FK_Worker_0_0" FromRole="Branch" ToRole="Worker" />
+          <NavigationProperty Name="WorkingHour" Relationship="Self.FK_WorkingHour_0_0" FromRole="Branch" ToRole="WorkingHour" />
+        </EntityType>
+        <EntityType Name="BranchMaterials">
+          <Key>
+            <PropertyRef Name="BranchID" />
+            <PropertyRef Name="MaterialID" />
+            <PropertyRef Name="Date" />
+          </Key>
+          <Property Name="BranchID" Type="Int64" Nullable="false" />
+          <Property Name="MaterialID" Type="Int64" Nullable="false" />
+          <Property Name="CountPerPiece" Type="Double" />
+          <Property Name="DeleteTime" Type="DateTime" />
+          <Property Name="CountForTheAmount" Type="Double" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Name="AddOrDelete" Type="Boolean" />
+          <Property Name="ServiceID" Type="Int64" />
+        </EntityType>
+        <EntityType Name="Cabinet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="BranchID" Type="Int64" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DeleteTime" Type="DateTime" />
+          <NavigationProperty Name="Branch" Relationship="Self.FK_Cabinet_0_0" FromRole="Cabinet" ToRole="Branch" />
+          <NavigationProperty Name="SessionServices" Relationship="Self.FK_SessionServices_1_0" FromRole="Cabinet" ToRole="SessionServices" />
+        </EntityType>
+        <EntityType Name="CabinetServices">
+          <Key>
+            <PropertyRef Name="CabinetID" />
+            <PropertyRef Name="ServiceID" />
+          </Key>
+          <Property Name="CabinetID" Type="Int64" Nullable="false" />
+          <Property Name="ServiceID" Type="Int64" Nullable="false" />
+          <Property Name="DeleteTime" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContactPhoneNumber" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SecondName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="DeleteTime" Type="DateTime" />
+          <NavigationProperty Name="Pay" Relationship="Self.FK_Pay_1_0" FromRole="Client" ToRole="Pay" />
+          <NavigationProperty Name="Session" Relationship="Self.FK_Session_1_0" FromRole="Client" ToRole="Session" />
+        </EntityType>
+        <EntityType Name="Material">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CostPerPiece" Type="Int64" />
+          <Property Name="NameOfSupplier" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TheCostForTheAmount" Type="Double" />
+          <Property Name="DeleteTime" Type="DateTime" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Pay">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientID" Type="Int64" />
+          <Property Name="Date" Type="DateTime" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="SessionID" Type="Int64" />
+          <Property Name="WorkerID" Type="Int64" />
+          <Property Name="DeleteTime" Type="DateTime" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Pay_1_0" FromRole="Pay" ToRole="Client" />
+          <NavigationProperty Name="Worker" Relationship="Self.FK_Pay_0_0" FromRole="Pay" ToRole="Worker" />
+          <NavigationProperty Name="Session" Relationship="Self.FK_Pay_2_0" FromRole="Pay" ToRole="Session" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="Double" Nullable="false" />
+          <Property Name="Time" Type="Double" Nullable="false" />
+          <Property Name="DeleteTime" Type="DateTime" />
+          <Property Name="CountWorker" Type="Int64" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SessionServices" Relationship="Self.FK_SessionServices_0_0" FromRole="Service" ToRole="SessionServices" />
+        </EntityType>
+        <EntityType Name="ServiceMaterials">
+          <Key>
+            <PropertyRef Name="ServiceID" />
+            <PropertyRef Name="MaterialID" />
+          </Key>
+          <Property Name="ServiceID" Type="Int64" Nullable="false" />
+          <Property Name="MaterialID" Type="Int64" Nullable="false" />
+          <Property Name="CountPerPiece" Type="Double" />
+          <Property Name="DeleteTime" Type="DateTime" />
+          <Property Name="CountForTheAmount" Type="Double" />
+        </EntityType>
+        <EntityType Name="ServiceWorkers">
+          <Key>
+            <PropertyRef Name="ServiceID" />
+            <PropertyRef Name="WorkerID" />
+          </Key>
+          <Property Name="ServiceID" Type="Int64" Nullable="false" />
+          <Property Name="WorkerID" Type="Int64" Nullable="false" />
+          <Property Name="DeleteTime" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="Session">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="ClientID" Type="Int64" />
+          <Property Name="Date" Type="DateTime" />
+          <Property Name="TimeStart" Type="DateTime" />
+          <Property Name="TimeEnd" Type="DateTime" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="BranchID" Type="Int64" />
+          <Property Name="DeleteTime" Type="DateTime" />
+          <Property Name="CountWorker" Type="Int64" />
+          <Property Name="ReduceMaterial" Type="Boolean" />
+          <NavigationProperty Name="Branch" Relationship="Self.FK_Session_0_0" FromRole="Session" ToRole="Branch" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Session_1_0" FromRole="Session" ToRole="Client" />
+          <NavigationProperty Name="Pay" Relationship="Self.FK_Pay_2_0" FromRole="Session" ToRole="Pay" />
+          <NavigationProperty Name="SessionServices" Relationship="Self.FK_SessionServices_2_0" FromRole="Session" ToRole="SessionServices" />
+        </EntityType>
+        <EntityType Name="SessionServices">
+          <Key>
+            <PropertyRef Name="SessionID" />
+            <PropertyRef Name="ServiceID" />
+          </Key>
+          <Property Name="SessionID" Type="Int64" Nullable="false" />
+          <Property Name="ServiceID" Type="Int64" Nullable="false" />
+          <Property Name="DeleteTime" Type="DateTime" />
+          <Property Name="PayState" Type="Boolean" />
+          <Property Name="WorkerID" Type="Int64" Nullable="false" />
+          <Property Name="TimeStart" Type="DateTime" />
+          <Property Name="TimeEnd" Type="DateTime" />
+          <Property Name="Description" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="CabinetID" Type="Int64" />
+          <NavigationProperty Name="Cabinet" Relationship="Self.FK_SessionServices_1_0" FromRole="SessionServices" ToRole="Cabinet" />
+          <NavigationProperty Name="Service" Relationship="Self.FK_SessionServices_0_0" FromRole="SessionServices" ToRole="Service" />
+          <NavigationProperty Name="Session" Relationship="Self.FK_SessionServices_2_0" FromRole="SessionServices" ToRole="Session" />
+          <NavigationProperty Name="Worker" Relationship="Self.FK_SessionServices_3_0" FromRole="SessionServices" ToRole="Worker" />
+        </EntityType>
+        <EntityType Name="SessionWorkers">
+          <Key>
+            <PropertyRef Name="SessionID" />
+            <PropertyRef Name="WorkerID" />
+          </Key>
+          <Property Name="SessionID" Type="Int64" Nullable="false" />
+          <Property Name="WorkerID" Type="Int64" Nullable="false" />
+          <Property Name="DeleteTime" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="Worker">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContactPhoneNumber" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SecondName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Experience" Type="Int64" />
+          <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TattooStyle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="DeleteTime" Type="DateTime" />
+          <Property Name="BranchID" Type="Int64" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Branch" Relationship="Self.FK_Worker_0_0" FromRole="Worker" ToRole="Branch" />
+          <NavigationProperty Name="Pay" Relationship="Self.FK_Pay_0_0" FromRole="Worker" ToRole="Pay" />
+          <NavigationProperty Name="SessionServices" Relationship="Self.FK_SessionServices_3_0" FromRole="Worker" ToRole="SessionServices" />
+          <NavigationProperty Name="WorkingHour" Relationship="Self.FK_WorkingHour_1_0" FromRole="Worker" ToRole="WorkingHour" />
+        </EntityType>
+        <EntityType Name="WorkerWorkingHours">
+          <Key>
+            <PropertyRef Name="WorkerID" />
+            <PropertyRef Name="WorkingHourID" />
+          </Key>
+          <Property Name="WorkerID" Type="Int64" Nullable="false" />
+          <Property Name="WorkingHourID" Type="Int64" Nullable="false" />
+          <Property Name="DeleteTime" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WorkingHour">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="BranchID" Type="Int64" />
+          <Property Name="WorkerID" Type="Int64" />
+          <Property Name="TimeStart" Type="DateTime" />
+          <Property Name="TimeEnd" Type="DateTime" />
+          <Property Name="DeleteTime" Type="DateTime" />
+          <NavigationProperty Name="Branch" Relationship="Self.FK_WorkingHour_0_0" FromRole="WorkingHour" ToRole="Branch" />
+          <NavigationProperty Name="Worker" Relationship="Self.FK_WorkingHour_1_0" FromRole="WorkingHour" ToRole="Worker" />
+        </EntityType>
+        <Association Name="FK_Cabinet_0_0">
+          <End Role="Branch" Type="Self.Branch" Multiplicity="1" />
+          <End Role="Cabinet" Type="Self.Cabinet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cabinet">
+              <PropertyRef Name="BranchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Session_0_0">
+          <End Role="Branch" Type="Self.Branch" Multiplicity="0..1" />
+          <End Role="Session" Type="Self.Session" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Session">
+              <PropertyRef Name="BranchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Worker_0_0">
+          <End Role="Branch" Type="Self.Branch" Multiplicity="0..1" />
+          <End Role="Worker" Type="Self.Worker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Worker">
+              <PropertyRef Name="BranchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkingHour_0_0">
+          <End Role="Branch" Type="Self.Branch" Multiplicity="0..1" />
+          <End Role="WorkingHour" Type="Self.WorkingHour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkingHour">
+              <PropertyRef Name="BranchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SessionServices_1_0">
+          <End Role="Cabinet" Type="Self.Cabinet" Multiplicity="0..1" />
+          <End Role="SessionServices" Type="Self.SessionServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cabinet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SessionServices">
+              <PropertyRef Name="CabinetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pay_1_0">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="Pay" Type="Self.Pay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pay">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Session_1_0">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="Session" Type="Self.Session" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Session">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pay_0_0">
+          <End Role="Worker" Type="Self.Worker" Multiplicity="0..1" />
+          <End Role="Pay" Type="Self.Pay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Worker">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pay">
+              <PropertyRef Name="WorkerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pay_2_0">
+          <End Role="Session" Type="Self.Session" Multiplicity="0..1" />
+          <End Role="Pay" Type="Self.Pay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Session">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pay">
+              <PropertyRef Name="SessionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SessionServices_0_0">
+          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="SessionServices" Type="Self.SessionServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SessionServices">
+              <PropertyRef Name="ServiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SessionServices_2_0">
+          <End Role="Session" Type="Self.Session" Multiplicity="1" />
+          <End Role="SessionServices" Type="Self.SessionServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Session">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SessionServices">
+              <PropertyRef Name="SessionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SessionServices_3_0">
+          <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
+          <End Role="SessionServices" Type="Self.SessionServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Worker">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SessionServices">
+              <PropertyRef Name="WorkerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkingHour_1_0">
+          <End Role="Worker" Type="Self.Worker" Multiplicity="0..1" />
+          <End Role="WorkingHour" Type="Self.WorkingHour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Worker">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkingHour">
+              <PropertyRef Name="WorkerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ClientEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Branch" EntityType="Self.Branch" />
+          <EntitySet Name="BranchMaterials" EntityType="Self.BranchMaterials" />
+          <EntitySet Name="Cabinet" EntityType="Self.Cabinet" />
+          <EntitySet Name="CabinetServices" EntityType="Self.CabinetServices" />
+          <EntitySet Name="Client" EntityType="Self.Client" />
+          <EntitySet Name="Material" EntityType="Self.Material" />
+          <EntitySet Name="Pay" EntityType="Self.Pay" />
+          <EntitySet Name="Service" EntityType="Self.Service" />
+          <EntitySet Name="ServiceMaterials" EntityType="Self.ServiceMaterials" />
+          <EntitySet Name="ServiceWorkers" EntityType="Self.ServiceWorkers" />
+          <EntitySet Name="Session" EntityType="Self.Session" />
+          <EntitySet Name="SessionServices" EntityType="Self.SessionServices" />
+          <EntitySet Name="SessionWorkers" EntityType="Self.SessionWorkers" />
+          <EntitySet Name="Worker" EntityType="Self.Worker" />
+          <EntitySet Name="WorkerWorkingHours" EntityType="Self.WorkerWorkingHours" />
+          <EntitySet Name="WorkingHour" EntityType="Self.WorkingHour" />
+          <AssociationSet Name="FK_Cabinet_0_0" Association="Self.FK_Cabinet_0_0">
+            <End Role="Branch" EntitySet="Branch" />
+            <End Role="Cabinet" EntitySet="Cabinet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Session_0_0" Association="Self.FK_Session_0_0">
+            <End Role="Branch" EntitySet="Branch" />
+            <End Role="Session" EntitySet="Session" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Worker_0_0" Association="Self.FK_Worker_0_0">
+            <End Role="Branch" EntitySet="Branch" />
+            <End Role="Worker" EntitySet="Worker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkingHour_0_0" Association="Self.FK_WorkingHour_0_0">
+            <End Role="Branch" EntitySet="Branch" />
+            <End Role="WorkingHour" EntitySet="WorkingHour" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SessionServices_1_0" Association="Self.FK_SessionServices_1_0">
+            <End Role="Cabinet" EntitySet="Cabinet" />
+            <End Role="SessionServices" EntitySet="SessionServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pay_1_0" Association="Self.FK_Pay_1_0">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Pay" EntitySet="Pay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Session_1_0" Association="Self.FK_Session_1_0">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Session" EntitySet="Session" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pay_0_0" Association="Self.FK_Pay_0_0">
+            <End Role="Worker" EntitySet="Worker" />
+            <End Role="Pay" EntitySet="Pay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pay_2_0" Association="Self.FK_Pay_2_0">
+            <End Role="Session" EntitySet="Session" />
+            <End Role="Pay" EntitySet="Pay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SessionServices_0_0" Association="Self.FK_SessionServices_0_0">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="SessionServices" EntitySet="SessionServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SessionServices_2_0" Association="Self.FK_SessionServices_2_0">
+            <End Role="Session" EntitySet="Session" />
+            <End Role="SessionServices" EntitySet="SessionServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SessionServices_3_0" Association="Self.FK_SessionServices_3_0">
+            <End Role="Worker" EntitySet="Worker" />
+            <End Role="SessionServices" EntitySet="SessionServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkingHour_1_0" Association="Self.FK_WorkingHour_1_0">
+            <End Role="Worker" EntitySet="Worker" />
+            <End Role="WorkingHour" EntitySet="WorkingHour" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ClientModelStoreContainer" CdmEntityContainer="ClientEntities">
+          <EntitySetMapping Name="Branch">
+            <EntityTypeMapping TypeName="ClientModel.Branch">
+              <MappingFragment StoreEntitySet="Branch">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="DeleteTime" ColumnName="DeleteTime" />
+                <ScalarProperty Name="CountCabinets" ColumnName="CountCabinets" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BranchMaterials">
+            <EntityTypeMapping TypeName="ClientModel.BranchMaterials">
+              <MappingFragment StoreEntitySet="BranchMaterials">
+                <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+                <ScalarProperty Name="MaterialID" ColumnName="MaterialID" />
+                <ScalarProperty Name="CountPerPiece" ColumnName="CountPerPiece" />
+                <ScalarProperty Name="DeleteTime" ColumnName="DeleteTime" />
+                <ScalarProperty Name="CountForTheAmount" ColumnName="CountForTheAmount" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="AddOrDelete" ColumnName="AddOrDelete" />
+                <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cabinet">
+            <EntityTypeMapping TypeName="ClientModel.Cabinet">
+              <MappingFragment StoreEntitySet="Cabinet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DeleteTime" ColumnName="DeleteTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CabinetServices">
+            <EntityTypeMapping TypeName="ClientModel.CabinetServices">
+              <MappingFragment StoreEntitySet="CabinetServices">
+                <ScalarProperty Name="CabinetID" ColumnName="CabinetID" />
+                <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
+                <ScalarProperty Name="DeleteTime" ColumnName="DeleteTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="ClientModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ContactPhoneNumber" ColumnName="ContactPhoneNumber" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="SecondName" ColumnName="SecondName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="DeleteTime" ColumnName="DeleteTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Material">
+            <EntityTypeMapping TypeName="ClientModel.Material">
+              <MappingFragment StoreEntitySet="Material">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CostPerPiece" ColumnName="CostPerPiece" />
+                <ScalarProperty Name="NameOfSupplier" ColumnName="NameOfSupplier" />
+                <ScalarProperty Name="TheCostForTheAmount" ColumnName="TheCostForTheAmount" />
+                <ScalarProperty Name="DeleteTime" ColumnName="DeleteTime" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pay">
+            <EntityTypeMapping TypeName="ClientModel.Pay">
+              <MappingFragment StoreEntitySet="Pay">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="SessionID" ColumnName="SessionID" />
+                <ScalarProperty Name="WorkerID" ColumnName="WorkerID" />
+                <ScalarProperty Name="DeleteTime" ColumnName="DeleteTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Service">
+            <EntityTypeMapping TypeName="ClientModel.Service">
+              <MappingFragment StoreEntitySet="Service">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="DeleteTime" ColumnName="DeleteTime" />
+                <ScalarProperty Name="CountWorker" ColumnName="CountWorker" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceMaterials">
+            <EntityTypeMapping TypeName="ClientModel.ServiceMaterials">
+              <MappingFragment StoreEntitySet="ServiceMaterials">
+                <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
+                <ScalarProperty Name="MaterialID" ColumnName="MaterialID" />
+                <ScalarProperty Name="CountPerPiece" ColumnName="CountPerPiece" />
+                <ScalarProperty Name="DeleteTime" ColumnName="DeleteTime" />
+                <ScalarProperty Name="CountForTheAmount" ColumnName="CountForTheAmount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceWorkers">
+            <EntityTypeMapping TypeName="ClientModel.ServiceWorkers">
+              <MappingFragment StoreEntitySet="ServiceWorkers">
+                <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
+                <ScalarProperty Name="WorkerID" ColumnName="WorkerID" />
+                <ScalarProperty Name="DeleteTime" ColumnName="DeleteTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Session">
+            <EntityTypeMapping TypeName="ClientModel.Session">
+              <MappingFragment StoreEntitySet="Session">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="TimeStart" ColumnName="TimeStart" />
+                <ScalarProperty Name="TimeEnd" ColumnName="TimeEnd" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+                <ScalarProperty Name="DeleteTime" ColumnName="DeleteTime" />
+                <ScalarProperty Name="CountWorker" ColumnName="CountWorker" />
+                <ScalarProperty Name="ReduceMaterial" ColumnName="ReduceMaterial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SessionServices">
+            <EntityTypeMapping TypeName="ClientModel.SessionServices">
+              <MappingFragment StoreEntitySet="SessionServices">
+                <ScalarProperty Name="SessionID" ColumnName="SessionID" />
+                <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
+                <ScalarProperty Name="DeleteTime" ColumnName="DeleteTime" />
+                <ScalarProperty Name="PayState" ColumnName="PayState" />
+                <ScalarProperty Name="WorkerID" ColumnName="WorkerID" />
+                <ScalarProperty Name="TimeStart" ColumnName="TimeStart" />
+                <ScalarProperty Name="TimeEnd" ColumnName="TimeEnd" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CabinetID" ColumnName="CabinetID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SessionWorkers">
+            <EntityTypeMapping TypeName="ClientModel.SessionWorkers">
+              <MappingFragment StoreEntitySet="SessionWorkers">
+                <ScalarProperty Name="SessionID" ColumnName="SessionID" />
+                <ScalarProperty Name="WorkerID" ColumnName="WorkerID" />
+                <ScalarProperty Name="DeleteTime" ColumnName="DeleteTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Worker">
+            <EntityTypeMapping TypeName="ClientModel.Worker">
+              <MappingFragment StoreEntitySet="Worker">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ContactPhoneNumber" ColumnName="ContactPhoneNumber" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="SecondName" ColumnName="SecondName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Experience" ColumnName="Experience" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="TattooStyle" ColumnName="TattooStyle" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="DeleteTime" ColumnName="DeleteTime" />
+                <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkerWorkingHours">
+            <EntityTypeMapping TypeName="ClientModel.WorkerWorkingHours">
+              <MappingFragment StoreEntitySet="WorkerWorkingHours">
+                <ScalarProperty Name="WorkerID" ColumnName="WorkerID" />
+                <ScalarProperty Name="WorkingHourID" ColumnName="WorkingHourID" />
+                <ScalarProperty Name="DeleteTime" ColumnName="DeleteTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkingHour">
+            <EntityTypeMapping TypeName="ClientModel.WorkingHour">
+              <MappingFragment StoreEntitySet="WorkingHour">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+                <ScalarProperty Name="WorkerID" ColumnName="WorkerID" />
+                <ScalarProperty Name="TimeStart" ColumnName="TimeStart" />
+                <ScalarProperty Name="TimeEnd" ColumnName="TimeEnd" />
+                <ScalarProperty Name="DeleteTime" ColumnName="DeleteTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

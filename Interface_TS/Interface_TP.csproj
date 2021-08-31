@@ -1,0 +1,443 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{46C38153-04F1-493D-A6A2-28E0ED34677B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Interface_TS</RootNamespace>
+    <AssemblyName>Interface_TS</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite, Version=1.0.109.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Core.1.0.109.2\lib\net451\System.Data.SQLite.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.109.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.109.0\lib\net451\System.Data.SQLite.EF6.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.109.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Linq.1.0.109.0\lib\net451\System.Data.SQLite.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddMaterialCount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddMaterialCount.Designer.cs">
+      <DependentUpon>AddMaterialCount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Branch.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BranchCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BranchCard.Designer.cs">
+      <DependentUpon>BranchCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BranchEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BranchEdit.Designer.cs">
+      <DependentUpon>BranchEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BranchMaterials.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Cabinet.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CabinetCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CabinetCard.Designer.cs">
+      <DependentUpon>CabinetCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CabinetEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CabinetEdit.Designer.cs">
+      <DependentUpon>CabinetEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CabinetServices.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Client.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClientCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClientCard.Designer.cs">
+      <DependentUpon>ClientCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClientEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClientEdit.Designer.cs">
+      <DependentUpon>ClientEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeleteMaterialCount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeleteMaterialCount.Designer.cs">
+      <DependentUpon>DeleteMaterialCount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Expenses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Expenses.Designer.cs">
+      <DependentUpon>Expenses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExpensesByServices.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExpensesByServices.Designer.cs">
+      <DependentUpon>ExpensesByServices.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Material.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MaterialCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MaterialCard.Designer.cs">
+      <DependentUpon>MaterialCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MaterialEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MaterialEdit.Designer.cs">
+      <DependentUpon>MaterialEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Pay.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repeat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Repeat.Designer.cs">
+      <DependentUpon>Repeat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Service.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ServiceCard.Designer.cs">
+      <DependentUpon>ServiceCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ServiceEdit.Designer.cs">
+      <DependentUpon>ServiceEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceMaterials.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceWorkers.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Session.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SessionServices.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SessionWorkers.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TattooParlor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TattooParlor.Designer.cs">
+      <DependentUpon>TattooParlor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form2.Designer.cs">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Authorization.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Authorization.Designer.cs">
+      <DependentUpon>Authorization.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PayCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PayCard.Designer.cs">
+      <DependentUpon>PayCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SessionCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SessionCard.Designer.cs">
+      <DependentUpon>SessionCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SessionEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SessionEdit.Designer.cs">
+      <DependentUpon>SessionEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Worker.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WorkerCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WorkerCard.Designer.cs">
+      <DependentUpon>WorkerCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WorkerEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WorkerEdit.Designer.cs">
+      <DependentUpon>WorkerEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WorkerService.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WorkerService.Designer.cs">
+      <DependentUpon>WorkerService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WorkerWorkingHour.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WorkerWorkingHour.Designer.cs">
+      <DependentUpon>WorkerWorkingHour.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WorkerWorkingHours.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WorkingHour.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WorkingHourCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WorkingHourCard.Designer.cs">
+      <DependentUpon>WorkingHourCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WorkingHourEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WorkingHourEdit.Designer.cs">
+      <DependentUpon>WorkingHourEdit.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AddMaterialCount.resx">
+      <DependentUpon>AddMaterialCount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BranchCard.resx">
+      <DependentUpon>BranchCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BranchEdit.resx">
+      <DependentUpon>BranchEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CabinetCard.resx">
+      <DependentUpon>CabinetCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CabinetEdit.resx">
+      <DependentUpon>CabinetEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClientCard.resx">
+      <DependentUpon>ClientCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClientEdit.resx">
+      <DependentUpon>ClientEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeleteMaterialCount.resx">
+      <DependentUpon>DeleteMaterialCount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Expenses.resx">
+      <DependentUpon>Expenses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExpensesByServices.resx">
+      <DependentUpon>ExpensesByServices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MaterialCard.resx">
+      <DependentUpon>MaterialCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MaterialEdit.resx">
+      <DependentUpon>MaterialEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Repeat.resx">
+      <DependentUpon>Repeat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServiceCard.resx">
+      <DependentUpon>ServiceCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServiceEdit.resx">
+      <DependentUpon>ServiceEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TattooParlor.resx">
+      <DependentUpon>TattooParlor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form2.resx">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Authorization.resx">
+      <DependentUpon>Authorization.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PayCard.resx">
+      <DependentUpon>PayCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="SessionCard.resx">
+      <DependentUpon>SessionCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SessionEdit.resx">
+      <DependentUpon>SessionEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkerCard.resx">
+      <DependentUpon>WorkerCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkerEdit.resx">
+      <DependentUpon>WorkerEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkerService.resx">
+      <DependentUpon>WorkerService.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkerWorkingHour.resx">
+      <DependentUpon>WorkerWorkingHour.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkingHourCard.resx">
+      <DependentUpon>WorkingHourCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkingHourEdit.resx">
+      <DependentUpon>WorkingHourEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EntityDeploy Include="Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\System.Data.SQLite.Core.1.0.109.2\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.109.2\build\net451\System.Data.SQLite.Core.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.109.2\build\net451\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.109.2\build\net451\System.Data.SQLite.Core.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
